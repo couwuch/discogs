@@ -90,7 +90,9 @@ func TestDiscogsClient_Get(t *testing.T) {
 			t.Fatalf("unable to marshal json response")
 		}
 
-		rw.Write(responseBody)
+		if _, err := rw.Write(responseBody); err != nil {
+			assert.FailNow(t, "failed to write the response body: %w", err)
+		}
 	}))
 	defer server.Close()
 
@@ -130,7 +132,9 @@ func TestDiscogsClient_Post(t *testing.T) {
 			t.Fatalf("unable to marshal json response")
 		}
 
-		rw.Write(responseBody)
+		if _, err := rw.Write(responseBody); err != nil {
+			assert.FailNow(t, "failed to write the response body: %w", err)
+		}
 	}))
 	defer server.Close()
 
@@ -170,7 +174,9 @@ func TestDiscogsClient_Put(t *testing.T) {
 			t.Fatalf("unable to marshal json response")
 		}
 
-		rw.Write(responseBody)
+		if _, err := rw.Write(responseBody); err != nil {
+			assert.FailNow(t, "failed to write the response body: %w", err)
+		}
 	}))
 	defer server.Close()
 
@@ -200,7 +206,9 @@ func TestDiscogsClient_Delete(t *testing.T) {
 			assert.FailNow(t, "unable to marshal json response: %v", err)
 		}
 
-		rw.Write(responseBody)
+		if _, err := rw.Write(responseBody); err != nil {
+			assert.FailNow(t, "failed to write the response body: %w", err)
+		}
 	}))
 	defer server.Close()
 
